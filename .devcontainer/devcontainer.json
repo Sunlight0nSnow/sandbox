@@ -1,0 +1,23 @@
+{
+    "name": "Ansible, Terraform",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "args": {
+            "TERRAFORM_VERSION": "0.14",
+            "ANSIBLE_VERSION": "2.9.9"
+        }
+    },
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash",
+        "files.insertFinalNewline": false,
+        "files.trimFinalNewlines": false
+    },
+    "extensions": [
+        "4ops.terraform"
+    ],
+    "userEnvProbe": "loginInteractiveShell",
+    "postCreateCommand": "echo \"alias home='cd ${containerWorkspaceFolder}'\" >> /etc/bash.bashrc",
+    "mounts": [
+        "source=${localEnv:HOME}/.aws,target=/root/.aws,type=bind,consistency=cached"
+    ]
+}
